@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:drools="http://drools.org/schema/drools-spring"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring.xsd">
+
+
+    <drools:kbase id="kbase1">
+        <drools:resources>
+            <drools:resource source="classpath:config/rules/helloworld.drl" />
+        </drools:resources>
+    </drools:kbase>
+
+<!--     <drools:ksession id="ksession1" type="stateful" kbase="kbase1" /> -->
+
+	<bean id="sampleRulesService" class="com.himanshu.demo.drools.spring.service.SampleRulesRunner">
+		<constructor-arg index="0" ref="kbase1"></constructor-arg>
+	</bean>
+
+</beans>
